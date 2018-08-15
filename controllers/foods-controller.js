@@ -6,6 +6,11 @@ class FoodsController {
     .then(foods => response.json(foods));
   }
 
+  static show(request, response, next) {
+    let food = Food.find(request.params.id)
+    .then(food => response.json(food));
+  }
+
 }
 
 module.exports = FoodsController;
