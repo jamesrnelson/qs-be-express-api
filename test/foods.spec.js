@@ -54,6 +54,16 @@ describe("Food endpoints", () => {
         expect(res.body.id).to.eql(1);
         expect(res.body.name).to.eql("Banana");
         expect(res.body.calories).to.eql(150);
+        done();
+      })
+    })
+
+    it("returns a 404 if a nonexistent food id is requested", (done) => {
+      chai.request(app)
+      .get("/api/v1/foods/1000000")
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.status(404)
       })
     })
   })
