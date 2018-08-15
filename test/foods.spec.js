@@ -63,7 +63,8 @@ describe("Food endpoints", () => {
       .get("/api/v1/foods/1000000")
       .end((err, res) => {
         expect(err).to.be.null;
-        expect(res).to.have.status(404)
+        expect(res).to.have.status(404);
+        done();
       })
     })
   })

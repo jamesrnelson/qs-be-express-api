@@ -8,7 +8,13 @@ class FoodsController {
 
   static show(request, response, next) {
     let food = Food.find(request.params.id)
-    .then(food => response.json(food));
+    .then(food => {
+      if (food) {
+        response.json(food);
+      } else {
+        response.sendStatus(404);
+      }
+    });
   }
 
 }
