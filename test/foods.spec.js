@@ -30,9 +30,9 @@ describe("Food endpoints", () => {
   });
 
   describe("GET /api/v1/foods", () => {
-    it('returns all foods in the database', (done) => {
+    it("returns all foods in the database", (done) => {
       chai.request(app)
-      .get('/api/v1/foods')
+      .get("/api/v1/foods")
       .end((err, res) => {
         expect(err).to.be.null;
         expect(res).to.have.status(200);
@@ -43,4 +43,29 @@ describe("Food endpoints", () => {
       });
     });
   });
+
+  describe("GET /api/v1/foods/:id", () => {
+    it("returns the specified food from the database", (done) => {
+      chai.request(app)
+      .get("/api/v1/foods/1")
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.status(200);
+        expect(res.body.id).to.eql(1);
+        expect(res.body.name).to.eql("Banana");
+        expect(res.body.calories).to.eql(150);
+        done();
+      })
+    })
+
+    it("returns a 404 if a nonexistent food id is requested", (done) => {
+      chai.request(app)
+      .get("/api/v1/foods/1000000")
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.status(404);
+        done();
+      })
+    })
+  })
 });
