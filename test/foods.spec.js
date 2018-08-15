@@ -65,7 +65,25 @@ describe("Food endpoints", () => {
         expect(err).to.be.null;
         expect(res).to.have.status(404);
         done();
+      });
+    });
+  });
+
+  describe("POST /api/v1/foods", () => {
+    it("can add a food with all the required parameters", (done) => {
+      chai.request(app)
+      .post("/api/v1/foods")
+      .send({
+        "food": { "name": "Garbanzo Beans", "calories": 300 }
       })
-    })
-  })
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.status(200);
+        expect(res.body.id).to.eql(10);
+        expect(res.body.name).to.eql("Garbanzo Beans");
+        expect(res.body.calories).to.eql(300);
+        done();
+      });
+    });
+  });
 });
