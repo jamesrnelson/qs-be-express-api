@@ -74,7 +74,7 @@ describe("Food endpoints", () => {
       chai.request(app)
       .post("/api/v1/foods")
       .send({
-        "food": { "name": "Garbanzo Beans", "calories": 300 }
+        food: { name: "Garbanzo Beans", calories: 300 }
       })
       .end((err, res) => {
         expect(err).to.be.null;
