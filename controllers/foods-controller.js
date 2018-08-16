@@ -19,7 +19,17 @@ class FoodsController {
   }
 
   static create(request, response, next) {
-    Food.create(request.body.food.name, request.body.food.calories)
+    const food = request.body.food;
+
+    for (let requiredParameter of ['name', 'calories']) {
+      if (!food[requiredParameter]) {
+        return response
+          .status(404)
+          .send({ error: `Expected format: { name: <String>, calories: <Integer> }. You're missing a "${requiredParameter}" property.` });
+      }
+    }
+
+    Food.create(food.name, food.calories)
     .then(food => Food.find(food[0]))
     .then(food => response.json(food));
   }
