@@ -85,5 +85,30 @@ describe("Food endpoints", () => {
         done();
       });
     });
+
+    it("sends a 404 status if name isn't supplied", () => {
+      chai.request(app)
+      .post("/api/v1/foods")
+      .send({
+        food: { calories: 300 }
+      })
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.status(404);
+      })
+    })
+
+    it("sends a 404 status if calories aren't supplied", () => {
+      chai.request(app)
+      .post("/api/v1/foods")
+      .send({
+        food: { name: 'Chili cheesedog' }
+      })
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.status(404);
+      })
+    })
+
   });
 });
