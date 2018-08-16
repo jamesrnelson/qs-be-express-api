@@ -109,6 +109,22 @@ describe("Food endpoints", () => {
         expect(res).to.have.status(404);
       })
     })
-
   });
+
+  describe("PATCH /foods/:id", () => {
+    it("can update a food if all parameters are supplied", () => {
+      chai.request(app)
+      .patch("/api/v1/foods/1")
+      .send({
+        food: { name: "Pear", calories: 85 }
+      })
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.status(200);
+        expect(res.body.id).to.eql(1);
+        expect(res.body.name).to.eql("Pear");
+        expect(res.body.calories).to.eql(85);
+      })
+    })
+  })
 });

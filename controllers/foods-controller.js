@@ -24,7 +24,7 @@ class FoodsController {
     for (let requiredParameter of ['name', 'calories']) {
       if (!food[requiredParameter]) {
         return response
-          .status(404)
+          .status(400)
           .send({ error: `Expected format: { name: <String>, calories: <Integer> }. You're missing a "${requiredParameter}" property.` });
       }
     }
