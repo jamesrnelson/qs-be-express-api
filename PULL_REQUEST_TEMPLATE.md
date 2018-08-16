@@ -5,7 +5,7 @@
 
 
 ### Checklist:
-* Tested on RSPEC?
+* Tested on MOCHA?
 * All tests passing? 
 
 ### Mentions:
