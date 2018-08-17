@@ -86,7 +86,7 @@ describe("Food endpoints", () => {
       });
     });
 
-    it("sends a 404 status if name isn't supplied", () => {
+    it("sends a 400 status if name isn't supplied", (done) => {
       chai.request(app)
       .post("/api/v1/foods")
       .send({
@@ -94,11 +94,12 @@ describe("Food endpoints", () => {
       })
       .end((err, res) => {
         expect(err).to.be.null;
-        expect(res).to.have.status(404);
+        expect(res).to.have.status(400);
+        done();
       })
     })
 
-    it("sends a 404 status if calories aren't supplied", () => {
+    it("sends a 400 status if calories aren't supplied", (done) => {
       chai.request(app)
       .post("/api/v1/foods")
       .send({
@@ -106,15 +107,16 @@ describe("Food endpoints", () => {
       })
       .end((err, res) => {
         expect(err).to.be.null;
-        expect(res).to.have.status(404);
+        expect(res).to.have.status(400);
+        done();
       })
     })
   });
 
   describe("PATCH /foods/:id", () => {
-    it("can update a food if all parameters are supplied", () => {
+    it("can update a food if all parameters are supplied", (done) => {
       chai.request(app)
-      .patch("/api/v1/foods/1")
+      .put("/api/v1/foods/1")
       .send({
         food: { name: "Pear", calories: 85 }
       })
@@ -124,6 +126,7 @@ describe("Food endpoints", () => {
         expect(res.body.id).to.eql(1);
         expect(res.body.name).to.eql("Pear");
         expect(res.body.calories).to.eql(85);
+        done();
       })
     })
   })
