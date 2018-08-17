@@ -49,7 +49,13 @@ class FoodsController {
 
   static destroy(request, response, next) {
     Food.destroy(request.params.id)
-    .then(destroyedFood => response.sendStatus(204));
+    .then((destroyedFood) => {
+      if (destroyedFood) {
+        response.sendStatus(204);
+      } else {
+        response.sendStatus(404);
+      }
+    })
   }
 
 }
