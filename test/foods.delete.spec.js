@@ -36,7 +36,9 @@ describe("Food Delete endpoints", () => {
       .end((err, res) => {
         expect(err).to.be.null;
         expect(res).to.have.status(204);
-      })
-    })
-  })
+        done();
+      });
+    });
+    
+  });
 });

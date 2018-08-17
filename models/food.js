@@ -22,6 +22,10 @@ class Food {
             .where({ id: foodId })
             .update({ name: newName, calories: newCalories}, "id");
   }
+
+  static destroy(foodId) {
+    return database("foods").where({ id: foodId }).del();
+  }
 }
 
 module.exports = Food;
