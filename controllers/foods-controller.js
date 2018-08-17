@@ -47,6 +47,17 @@ class FoodsController {
     .then(retrievedFood => response.json(retrievedFood));
   }
 
+  static destroy(request, response, next) {
+    Food.destroy(request.params.id)
+    .then((destroyedFood) => {
+      if (destroyedFood) {
+        response.sendStatus(204);
+      } else {
+        response.sendStatus(404);
+      }
+    })
+  }
+
 }
 
 module.exports = FoodsController;
