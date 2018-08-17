@@ -34,6 +34,19 @@ class FoodsController {
     .then(food => response.json(food));
   }
 
+  static update(request, response, next) {
+    let newAttributes = request.body.food
+
+    for (let requiredParameter of ['name', 'calories'])
+      if (!newAttributes[requiredParameter]) {
+        return response.sendStatus(400);
+      }
+
+    Food.update(request.params.id, newAttributes.name, newAttributes.calories)
+    .then(updatedFood => Food.find(updatedFood[0]))
+    .then(retrievedFood => response.json(retrievedFood));
+  }
+
 }
 
 module.exports = FoodsController;
