@@ -24,7 +24,7 @@ class FoodsController {
     for (let requiredParameter of ['name', 'calories']) {
       if (!food[requiredParameter]) {
         return response
-          .status(404)
+          .status(400)
           .send({ error: `Expected format: { name: <String>, calories: <Integer> }. You're missing a "${requiredParameter}" property.` });
       }
     }
@@ -32,6 +32,19 @@ class FoodsController {
     Food.create(food.name, food.calories)
     .then(food => Food.find(food[0]))
     .then(food => response.json(food));
+  }
+
+  static update(request, response, next) {
+    let newAttributes = request.body.food
+
+    for (let requiredParameter of ['name', 'calories'])
+      if (!newAttributes[requiredParameter]) {
+        return response.sendStatus(400);
+      }
+
+    Food.update(request.params.id, newAttributes.name, newAttributes.calories)
+    .then(updatedFood => Food.find(updatedFood[0]))
+    .then(retrievedFood => response.json(retrievedFood));
   }
 
 }
