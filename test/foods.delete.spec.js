@@ -39,6 +39,15 @@ describe("Food Delete endpoints", () => {
         done();
       });
     });
-    
+
+    it("sends a 404 if the id is not found", (done) => {
+      chai.request(app)
+      .delete("/api/v1/foods/1000000")
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.status(404);
+        done();
+      });
+    })
   });
 });
