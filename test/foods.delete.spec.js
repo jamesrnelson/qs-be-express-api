@@ -32,7 +32,7 @@ describe("Food Delete endpoints", () => {
   describe("DELETE /foods/:id", () => {
     it("can delete a food of the specified id", (done) => {
       chai.request(app)
-      .delete("/api/v1/foods/1")
+      .delete("/api/v1/foods/9")
       .end((err, res) => {
         expect(err).to.be.null;
         expect(res).to.have.status(204);

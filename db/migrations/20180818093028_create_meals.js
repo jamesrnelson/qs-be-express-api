@@ -1,15 +1,13 @@
 
 exports.up = function(knex, Promise) {
-  return Promise.all([
-    knex.schema.createTable('meals', function (table) {
-      table.increments('id');
-      table.string('name');
-    })
-  ]);
+  let createQuery = `CREATE TABLE meals(
+    id SERIAL PRIMARY KEY NOT NULL,
+    name TEXT NOT NULL
+  )`;
+  return knex.raw(createQuery);
 };
 
 exports.down = function(knex, Promise) {
-  return Promise.all([
-    knex.schema.dropTable('meals')
-  ]);
+  let dropQuery = `DROP TABLE meals`;
+  return knex.raw(dropQuery);
 };

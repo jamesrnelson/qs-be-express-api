@@ -1,22 +1,15 @@
 
 exports.up = function(knex, Promise) {
-  return Promise.all([
-    knex.schema.createTable('meal_foods', function(table) {
-      table.increments('id');
-      table.integer('meal_id');
-      table.integer('food_id');
+  let createQuery = `CREATE TABLE meal_foods(
+    id SERIAL PRIMARY KEY NOT NULL,
+    meal_id INTEGER REFERENCES meals ON DELETE CASCADE,
+    food_id INTEGER REFERENCES foods ON DELETE CASCADE
+  )`;
 
-      table.foreign('meal_id')
-      .references('meals.id');
-      
-      table.foreign('food_id')
-      .references('foods.id');
-    })
-  ]);
+  return knex.raw(createQuery);
 };
 
 exports.down = function(knex, Promise) {
-  return Promise.all([
-    knex.schema.dropTable('meal_foods')
-  ]);
+  let dropQuery = `DROP TABLE meal_foods`;
+  return knex.raw(dropQuery);
 };
