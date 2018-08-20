@@ -44,16 +44,16 @@ describe("Meal GET endpoints", () => {
     });
   });
 
-  describe("GET /meals/:id", () => {
+  describe("GET /meals/:id/foods", () => {
     it("should return the specified meal with its associated foods", (done) => {
       chai.request(app)
-      .get("/api/v1/meals/4")
+      .get("/api/v1/meals/1/foods")
       .end((err, res) => {
         expect(err).to.be.null;
         expect(res).to.have.status(200);
         expect(res.body.length).to.eql(1);
-        expect(res.body[0].name).to.eql("Dinner");
-        expect(res.body[0].foods).to.eql([]);
+        expect(res.body[0].name).to.eql("Breakfast");
+        expect(res.body[0].foods.length).to.eql(3);
         done();
       });
     });
