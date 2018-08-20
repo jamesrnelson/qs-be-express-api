@@ -101,18 +101,6 @@ exports.seed = function(knex, Promise) {
         knex.raw(
         'INSERT INTO meal_foods (meal_id, food_id) VALUES (?, ?)',
         [3, 3]
-        ),
-        knex.raw(
-        'INSERT INTO meal_foods (meal_id, food_id) VALUES (?, ?)',
-        [4, 1]
-        ),
-        knex.raw(
-        'INSERT INTO meal_foods (meal_id, food_id) VALUES (?, ?)',
-        [4, 6]
-        ),
-        knex.raw(
-        'INSERT INTO meal_foods (meal_id, food_id) VALUES (?, ?)',
-        [4, 7]
         )
       ]);
     });
