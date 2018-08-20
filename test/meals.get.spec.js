@@ -57,5 +57,14 @@ describe("Meal GET endpoints", () => {
         done();
       });
     });
+
+    it("should return a 404 if the meal is not found", () => {
+      chai.request(app)
+      .get("/api/v1/meals/1000000/foods")
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.status(404);
+      })
+    })
   });
 });
