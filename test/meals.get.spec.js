@@ -51,20 +51,21 @@ describe("Meal GET endpoints", () => {
       .end((err, res) => {
         expect(err).to.be.null;
         expect(res).to.have.status(200);
-        expect(res.body.length).to.eql(1);
-        expect(res.body[0].name).to.eql("Breakfast");
-        expect(res.body[0].foods.length).to.eql(3);
+        expect(res.body.id).to.eql(1);
+        expect(res.body.name).to.eql("Breakfast");
+        expect(res.body.foods.length).to.eql(3);
         done();
       });
     });
 
-    it("should return a 404 if the meal is not found", () => {
+    it("should return a 404 if the meal is not found", (done) => {
       chai.request(app)
       .get("/api/v1/meals/1000000/foods")
       .end((err, res) => {
         expect(err).to.be.null;
         expect(res).to.have.status(404);
-      })
-    })
+        done();
+      });
+    });
   });
 });
