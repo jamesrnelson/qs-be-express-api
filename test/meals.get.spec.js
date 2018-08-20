@@ -11,7 +11,7 @@ const environment = process.env.NODE_ENV || 'development';
 const configuration = require('../knexfile')[environment];
 const knex = require('knex')(configuration);
 
-describe("Food Delete endpoints", () => {
+describe("Meal GET endpoints", () => {
   beforeEach((done) => {
     knex.migrate.latest()
     .then(() => {
@@ -29,25 +29,16 @@ describe("Food Delete endpoints", () => {
     });
   });
 
-  describe("DELETE /foods/:id", () => {
-    it("can delete a food of the specified id", (done) => {
+  describe("GET /meals", () => {
+    it("should return all meals with their associated foods", (done) => {
       chai.request(app)
-      .delete("/api/v1/foods/9")
+      .get("/api/v1/meals")
       .end((err, res) => {
         expect(err).to.be.null;
-        expect(res).to.have.status(204);
+        expect(res).to.have.status(200);
+        expect(res.body.length).to.eql(4);
         done();
-      });
-    });
-
-    it("sends a 404 if the id is not found", (done) => {
-      chai.request(app)
-      .delete("/api/v1/foods/1000000")
-      .end((err, res) => {
-        expect(err).to.be.null;
-        expect(res).to.have.status(404);
-        done();
-      });
+      })
     })
-  });
-});
+  })
+})
