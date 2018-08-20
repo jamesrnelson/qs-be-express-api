@@ -27,9 +27,9 @@ exports.seed = function(knex, Promise) {
     .then(() => {
       return Promise.all([
         knex.raw(
-        'INSERT INTO foods (name, calories) VALUES (?, ?)',
-        ["Banana", 150]
-        ),
+          'INSERT INTO foods (name, calories) VALUES (?, ?)',
+          ["Banana", 150]
+          ),
         knex.raw(
           'INSERT INTO foods (name, calories) VALUES (?, ?)',
           ["Yogurt", 550]
