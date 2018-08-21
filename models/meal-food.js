@@ -4,6 +4,12 @@ const database = require('knex')(configuration);
 const pry = require('pryjs');
 
 class MealFood {
+  static find(foodId) {
+    return database("meal_foods")
+      .select()
+      .where({ food_id: foodId })
+  }
+
   static create(params) {
     return database("meal_foods")
       .insert({ meal_id: params.meal_id, food_id: params.id })
