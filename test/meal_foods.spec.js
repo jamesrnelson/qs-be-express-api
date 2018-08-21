@@ -44,4 +44,18 @@ describe("Meal_Foods endpoints", () => {
     });
   });
 
+  describe("DELETE /meals/:meal_id/foods/:id", () => {
+    it("should be able to delete meal_foods", (done) => {
+      chai.request(app)
+      .delete("/api/v1/meals/1/foods/1")
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res.body).to.eql({
+          "message": "Successfully removed Banana from Breakfast"
+        });
+        done();
+      });
+    });
+  });
+
 });
