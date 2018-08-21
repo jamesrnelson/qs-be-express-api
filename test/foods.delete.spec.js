@@ -34,6 +34,7 @@ describe("Food Delete endpoints", () => {
       chai.request(app)
       .delete("/api/v1/foods/9")
       .end((err, res) => {
+        console.log(res.body)
         expect(err).to.be.null;
         expect(res).to.have.status(204);
         done();

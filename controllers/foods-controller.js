@@ -1,4 +1,5 @@
 const Food = require('../models/food');
+const MealFood = require('../models/meal-food');
 const pry = require('pryjs');
 
 class FoodsController {
@@ -48,12 +49,20 @@ class FoodsController {
   }
 
   static destroy(request, response, next) {
-    Food.destroy(request.params.id)
-    .then((destroyedFood) => {
-      if (destroyedFood) {
-        response.sendStatus(204);
-      } else {
+    let foodId = request.params.id
+    MealFood.find(foodId)
+    .then(mealFood => {
+      if (mealFood.length > 0) {
         response.sendStatus(404);
+      } else {
+        Food.destroy(foodId)
+        .then((destroyedFood) => {
+          if (destroyedFood) {
+            response.sendStatus(204);
+          } else {
+            response.sendStatus(404);
+          }
+        })
       }
     })
   }
