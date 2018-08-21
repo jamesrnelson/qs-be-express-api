@@ -19,6 +19,22 @@ class MealFoodsController {
       });
     });
   }
+
+  static destroy(request, response, next) {
+    const promises = [
+      Meal.find(request.params.meal_id),
+      Food.find(request.params.id)
+    ]
+
+    MealFood.destroy(request.params)
+      .then((destroyedMealFood) => {
+        Promise.all(promises)
+        .then((data) => {
+          let message = { "message": `Successfully removed ${data[1].name} from ${data[0][0].name}` }
+          response.status(201).json(message);
+        });
+      });
+  }
 }
 
 module.exports = MealFoodsController;
