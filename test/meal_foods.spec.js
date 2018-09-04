@@ -36,9 +36,6 @@ describe("Meal_Foods endpoints", () => {
       .end((err, res) => {
         expect(err).to.be.null;
         expect(res).to.have.status(201);
-        expect(res.body).to.eql({
-          "message": "Successfully added Pork Kebabs to Dinner"
-        });
         done();
       });
     });
@@ -50,9 +47,7 @@ describe("Meal_Foods endpoints", () => {
       .delete("/api/v1/meals/1/foods/1")
       .end((err, res) => {
         expect(err).to.be.null;
-        expect(res.body).to.eql({
-          "message": "Successfully removed Banana from Breakfast"
-        });
+        expect(res).to.have.status(201)
         done();
       });
     });
