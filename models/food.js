@@ -26,6 +26,13 @@ class Food {
   static destroy(foodId) {
     return database("foods").where({ id: foodId }).del();
   }
+
+  static top_five() {
+    return database.raw(
+        "SELECT foods.*, count(meal_foods.food_id) AS times_eaten FROM foods INNER JOIN meal_foods ON foods.id = meal_foods.food_id GROUP BY foods.id ORDER BY count(meal_foods.food_id) DESC LIMIT 5"
+      )
+      .then(data => data.rows);
+  }
 }
 
 module.exports = Food;
