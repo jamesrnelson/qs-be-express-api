@@ -41,6 +41,7 @@ describe("Favorite Foods endpoint", () => {
         expect(res.body[0].foods.length).to.eql(1);
         expect(res.body[0].foods[0].name).to.eql("Banana");
         expect(res.body[0].foods[0].calories).to.eql(150);
+        expect(res.body[0].foods[0].mealsWhenEaten).to.eql(['Breakfast', 'Lunch']);
         expect(res.body[1].timesEaten).to.eql('2');
         expect(res.body[1].foods.length).to.eql(3);
         expect(res.body[2].timesEaten).to.eql('1');
