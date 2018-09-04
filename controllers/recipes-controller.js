@@ -9,14 +9,19 @@ class RecipesController {
     fetch(`http://api.yummly.com/v1/api/recipes?_app_id=4d31de00&_app_key=e660bdff4ade5b248a3ea3b64720dd8e&q=${food_name}`)
     .then(response => response.json())
     .then((response) => {
-      let matches = response.matches.map((match) => {
+      let newResponse = {}
+      response.recipes = []
+      response.matches.map((match) => {
         let recipe = {};
         recipe.name = match['recipeName'];
-        recipe.url = match['smallImageUrls'][0];
-
-        return recipe
+        if (match['smallImageUrls']) {
+          recipe.url = match['smallImageUrls'][0];
+        } else {
+          recipe.url = 'no url provided'
+        }
+        response.recipes.push(recipe)
       })
-      return matches
+      return newResponse
     })
   }
 }
