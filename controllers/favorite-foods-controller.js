@@ -11,7 +11,7 @@ class FavoriteFoodsController {
         if (rankingArray.length == 0) {
           let ranking = {};
           let newFood = {};
-          ranking.timesEaten = food.times_eaten;
+          ranking.timesEaten = food.timesEaten;
           newFood.name = food.name;
           newFood.calories = food.calories;
           ranking.foods = [];
@@ -29,6 +29,7 @@ class FavoriteFoodsController {
             ranking.timesEaten = food.times_eaten;
             newFood.name = food.name;
             newFood.calories = food.calories;
+            newFood.mealsWhenEaten =
             ranking.foods = [];
             ranking.foods.push(newFood);
             rankingArray.push(ranking);
