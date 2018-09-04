@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const FoodsController = require('../../../controllers/foods-controller');
-const RecipesController = require('../../../controller/recipes-controller');
+const RecipesController = require('../../../controllers/recipes-controller');
 
 router.get('/', FoodsController.index);
 router.get('/:id', FoodsController.show);
