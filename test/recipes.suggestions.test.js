@@ -36,7 +36,7 @@ describe("Recipe Suggestions endpoint", () => {
       .end((err, res) => {
         expect(err).to.be.null;
         expect(res).to.have.status(200);
-        expect(res.body.length).to.eql(10);
+        expect(res.body.recipes.length).to.eql(10);
         expect(res.body.recipes[0].name).to.eql('Basic Homemade Harissa')
         expect(res.body.recipes[0].url).to.eql('http://lh6.ggpht.com/3UN3uRTVkreHwZOWMZXnrodDQZlhUMBixstFEtlFRYTiwgzIk1D9Eu6IQWyP_NrnhkKU0f67uVA57VIygO-4=s90')
         done();
