@@ -23,6 +23,7 @@ class RecipesController {
       })
       return newResponse
     })
+    .then(newResponse => response.json(newResponse))
   }
 }
 
