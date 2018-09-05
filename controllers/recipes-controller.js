@@ -10,7 +10,7 @@ class RecipesController {
     .then(response => response.json())
     .then((response) => {
       let newResponse = {}
-      response.recipes = []
+      newResponse.recipes = []
       response.matches.map((match) => {
         let recipe = {};
         recipe.name = match['recipeName'];
@@ -19,7 +19,7 @@ class RecipesController {
         } else {
           recipe.url = 'no url provided'
         }
-        response.recipes.push(recipe)
+        newResponse.recipes.push(recipe)
       })
       return newResponse
     })
