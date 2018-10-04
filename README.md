@@ -4,7 +4,10 @@
 
 Quantified Self is available in production at https://jamesrnelson.github.io/qs-fe-express
 
-Quantified Self is the Node/Express api that supports a preexisting javascript frontend. The frontend and backend together allow an individual to create foods and add them to certain preexisting meals in order to keep track of their daily caloric intake.
+Quantified Self is the Node/Express api that supports a preexisting javascript frontend. The frontend and backend together allow an individual to create foods and add them to certain preexisting meals in order to keep track of their daily caloric intake. Quantified Self is an iterated project that I have also built in Rails and Django.
+
+* The back end Rails API repository can be found at: https://github.com/jamesrnelson/qs-be-rails-api
+* the back end Django API repository can be fount at: https://github.com/jamesrnelson/qs-be-django-api
 
 ### Javascript
 
